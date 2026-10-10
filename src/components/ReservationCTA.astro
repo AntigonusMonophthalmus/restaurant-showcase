@@ -1,0 +1,27 @@
+---
+import { site } from '../site.config.js';
+---
+
+<section class="bg-cream py-16">
+  <div class="mx-auto max-w-3xl px-4 text-center">
+    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Rezervujte stůl</h2>
+    <p class="mt-4 text-muted">
+      Rezervace online nebo telefonicky. Potvrzení posíláme do 24 hodin.
+    </p>
+
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a
+        href="/reservation"
+        class="rounded-full bg-ochre px-6 py-3 text-sm font-medium text-parchment transition-colors hover:bg-ochre/90"
+      >
+        Rezervovat online
+      </a>
+      <a
+        href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+        class="rounded-full border border-ink/15 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ochre hover:text-ochre"
+      >
+        {site.contact.phone}
+      </a>
+    </div>
+  </div>
+</section>

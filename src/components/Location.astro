@@ -1,0 +1,77 @@
+---
+import { site } from '../site.config.js';
+
+// Mapy.cz /showmap: center is lon,lat (not lat,lon). Marker at the pin.
+const mapSrc =
+  'https://mapy.com/s/kacohoboju';
+
+const fullAddress = `${site.address.street}, ${site.address.zip} ${site.address.city}`;
+const mapyLink = `https://mapy.cz/zakladni?q=${encodeURIComponent(fullAddress)}`;
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid gap-8 lg:grid-cols-3">
+      <dl class="space-y-6 lg:col-span-1">
+        <div>
+          <dt class="text-sm font-medium uppercase tracking-wide text-muted">
+            Adresa
+          </dt>
+          <dd class="mt-2 text-ink">
+            {site.address.street}<br />
+            {site.address.zip} {site.address.city}
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-sm font-medium uppercase tracking-wide text-muted">
+            Kontakt
+          </dt>
+          <dd class="mt-2 space-y-1 text-ink">
+            <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="hover:underline">
+              {site.contact.phone}
+            </a><br />
+            <a href={`mailto:${site.contact.email}`} class="hover:underline">
+              {site.contact.email}
+            </a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="text-sm font-medium uppercase tracking-wide text-muted">
+            Otevírací doba
+          </dt>
+          <dd class="mt-2">
+            <ul class="space-y-1 text-sm">
+              {site.hours.map(({ day, open, close }) => (
+                <li class="flex justify-between gap-4">
+                  <span class="text-muted">{day}</span>
+                  <span class="text-ink">{open}–{close}</span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="lg:col-span-2">
+        <div class="overflow-hidden rounded-lg border border-ink/10">
+          <iframe
+            title={`Mapa – ${site.name}`}
+            src={mapSrc}
+            width="100%"
+            height="480"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="block h-[480px] w-full"
+          ></iframe>
+        </div>
+        <p class="mt-3 text-sm text-muted">
+          <a href={mapyLink} target="_blank" rel="noopener noreferrer" class="hover:underline">
+            Otevřít v Mapy.cz →
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

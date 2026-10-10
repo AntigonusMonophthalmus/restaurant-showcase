@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero.jpeg';
+import { site } from '../site.config.js';
+---
+
+<section class="relative">
+  <Image
+    src={heroImage}
+    alt=""
+    widths={[640, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="h-[70vh] w-full object-cover sm:h-[85vh]"
+  />
+
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10"></div>
+
+  <div class="absolute inset-0 flex items-end">
+    <div class="mx-auto w-full max-w-6xl px-4 pb-12 sm:pb-20">
+      <h1 class="max-w-2xl text-4xl font-bold text-parchment sm:text-5xl">
+        {site.name}
+      </h1>
+      <p class="mt-3 max-w-xl text-lg text-parchment/90">
+        {site.tagline}
+      </p>
+<div class="mt-8 flex flex-wrap gap-3">
+  <a
+    href="/reservation"
+    class="rounded-full bg-cream px-6 py-3 text-sm font-medium text-ink hover:bg-parchment"
+  >
+    Rezervovat stůl
+  </a>
+  <a
+    href="/menu"
+    class="rounded-full border border-parchment/40 px-6 py-3 text-sm font-medium text-parchment hover:bg-parchment/10"
+  >
+    Prohlédnout menu
+  </a>
+</div>
+    </div>
+  </div>
+</section>

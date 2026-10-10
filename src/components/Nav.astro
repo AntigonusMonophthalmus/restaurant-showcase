@@ -1,0 +1,40 @@
+---
+import { site } from '../site.config.js';
+
+const links = [
+  { href: '/', label: 'Domů' },
+  { href: '/menu', label: 'Menu' },
+  { href: '/gallery', label: 'Galerie' },
+  { href: '/about', label: 'O nás' },
+  { href: '/contact', label: 'Kontakt' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="bg-ink">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5">
+    <a href="/" class="font-display text-xl font-semibold tracking-tight text-parchment">
+      {site.shortName}
+    </a>
+
+    <nav class="hidden gap-6 text-sm sm:flex">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          aria-current={current === href ? 'page' : undefined}
+          class="text-parchment/70 transition-colors hover:text-parchment aria-[current=page]:text-ochre aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href="/reservation"
+      class="rounded-full bg-ochre px-4 py-2 text-sm font-medium text-parchment transition-colors hover:bg-ochre/90"
+    >
+      Rezervovat
+    </a>
+  </div>
+</header>

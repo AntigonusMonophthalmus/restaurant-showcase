@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import aboutImage from '../assets/about.jpg';
+import { site } from '../site.config.js';
+---
+
+<section class="py-16">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid items-start gap-10 lg:grid-cols-2">
+      <div class="order-2 lg:order-1 space-y-5 text-ink/80 leading-relaxed">
+        <h2 class="text-3xl font-bold sm:text-4xl text-ink">O nás</h2>
+
+        <p>
+          {site.name} stojí na štramberském náměstí už od roku 1998, v domě,
+          který sám pamatuje časy, kdy Štramberk býval královským městem.
+          Za ta léta se vystřídalo mnoho generací hostů — turisté mířící
+          na Trúbu, místní na oběd, rodiny na nedělní oběd. Všichni se
+          u nás posadí ke stejnému stolu.
+        </p>
+
+        <p>
+          Vaříme poctivě a z místních surovin. Maso odebíráme od farmářů
+          z okolí Nového Jičína, zeleninu z vlastní zahrady za domem a pivo
+          čepujeme z malých moravských a slezských pivovarů. Nevyhledáváme
+          moderní trendy — raději děláme klasiku tak, jak má být.
+        </p>
+
+        <p>
+          Naše kuchyně vychází z tradiční moravskoslezské kuchyně. Najdete
+          u nás svíčkovou, vepřo knedlo zelo, halušky se slaninou a bryndzou,
+          pečenou kachnu i štramberské uši, které pečeme přímo u nás podle
+          receptu starého několik generací. Menu se mění se sezónou — na
+          jaře přibývají kopřivy a medvědí česnek, na podzim zvěřina
+          a dýně, v zimě zabíjačkové speciality.
+        </p>
+
+        <p>
+          Interiér je jednoduchý: dřevěné stoly, cihlová klenba, otevřený
+          výhled do náměstí. V létě otevíráme předzahrádku přímo na
+          dlažbě, kde se dá posedět až do večera. V zimě zatopíme v krbu
+          a vaříme svařené víno.
+        </p>
+
+        <p>
+          Nejsme luxusní restaurace a nechceme být. Jsme hospoda, kam se
+          chodí jíst, pít a posedět. Přijďte se přesvědčit sami.
+        </p>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <Image
+          src={aboutImage}
+          alt="Restaurace Pod Trúbou na štramberském náměstí"
+          widths={[400, 800, 1200]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="aspect-[4/5] w-full rounded-lg object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

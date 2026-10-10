@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-parchment: #f7f2e8;
+  --color-cream: #fcfaf4;
+  --color-ink: #2a2118;
+  --color-muted: #6b5e4d;
+  --color-ochre: #a67c3d;
+  --color-burgundy: #6b2737;
+
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply bg-parchment text-ink font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-variation-settings: 'SOFT' 50;
+  }
+}
+@media print {
+  body > header,
+  body > footer,
+  [role="tablist"] {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  /* Every panel visible in print, regardless of which tab is active on screen. */
+  div[role="tabpanel"] {
+    display: block !important;
+  }
+
+  div[role="tabpanel"] + div[role="tabpanel"] {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ccc;
+  }
+
+  div[role="tabpanel"] li {
+    break-inside: avoid;
+  }
+}

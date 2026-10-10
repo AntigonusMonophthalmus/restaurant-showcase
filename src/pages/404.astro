@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Stránka nenalezena" description="Tato stránka neexistuje.">
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center">
+    <p class="font-display text-6xl font-bold text-muted/40">404</p>
+    <h1 class="mt-4 font-display text-3xl font-bold text-ink">Stránka nenalezena</h1>
+    <p class="mt-4 text-muted">
+      Omlouváme se, ale tato stránka neexistuje. Možná jste se přepsali v adrese,
+      nebo je odkaz zastaralý.
+    </p>
+    <a
+      href="/"
+      class="mt-8 rounded-full bg-ochre px-6 py-3 text-sm font-medium text-parchment hover:bg-ochre/90"
+    >
+      Zpět na hlavní stránku
+    </a>
+  </section>
+</BaseLayout>

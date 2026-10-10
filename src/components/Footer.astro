@@ -1,0 +1,51 @@
+---
+import { site } from '../site.config.js';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-parchment">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="lg:col-span-2">
+      <p class="font-display text-xl font-semibold text-parchment">{site.name}</p>
+      <p class="mt-2 text-sm text-parchment/70">{site.tagline}</p>
+    </div>
+
+    <div>
+      <p class="text-sm font-medium uppercase tracking-wide text-parchment/60">Kontakt</p>
+      <ul class="mt-3 space-y-1 text-sm">
+        <li class="text-parchment/90">{site.address.street}</li>
+        <li class="text-parchment/90">{site.address.zip} {site.address.city}</li>
+        <li>
+          <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="text-parchment/90 hover:text-ochre">
+            {site.contact.phone}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.contact.email}`} class="text-parchment/90 hover:text-ochre">
+            {site.contact.email}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-sm font-medium uppercase tracking-wide text-parchment/60">Otevírací doba</p>
+      <ul class="mt-3 space-y-1 text-sm">
+        {site.hours.map(({ day, open, close }) => (
+          <li class="flex justify-between gap-4">
+            <span class="text-parchment/70">{day.slice(0, 2)}</span>
+            <span class="text-parchment/90">{open}–{close}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-parchment/10">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-parchment/60 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name}. Všechna práva vyhrazena.</p>
+      <p>Štramberk, Moravskoslezský kraj</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,50 @@
+---
+import { site } from '../site.config.js';
+---
+
+<section class="bg-parchment py-16">
+  <div class="mx-auto max-w-4xl px-4">
+    <header class="mb-10 text-center">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Kde nás najdete</h2>
+      <p class="mt-2 text-muted">Přímo na štramberském náměstí, pár kroků od Trúby.</p>
+    </header>
+
+    <div class="grid gap-8 text-center sm:grid-cols-3">
+      <div>
+        <p class="text-sm font-medium uppercase tracking-wide text-muted">Adresa</p>
+        <p class="mt-3 text-ink">
+          {site.address.street}<br />
+          {site.address.zip} {site.address.city}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm font-medium uppercase tracking-wide text-muted">Kontakt</p>
+        <p class="mt-3 text-ink">
+          <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} class="hover:text-ochre">
+            {site.contact.phone}
+          </a><br />
+          <a href={`mailto:${site.contact.email}`} class="hover:text-ochre">
+            {site.contact.email}
+          </a>
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm font-medium uppercase tracking-wide text-muted">Dnes otevřeno</p>
+        <p class="mt-3 text-ink">
+          {site.hours[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1].open}–{site.hours[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1].close}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/contact"
+        class="inline-block rounded-full border border-ink/15 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ochre hover:text-ochre"
+      >
+        Kontakt a otevírací doba
+      </a>
+    </div>
+  </div>
+</section>

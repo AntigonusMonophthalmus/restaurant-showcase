@@ -1,0 +1,102 @@
+---
+import { menu } from '../data/menu.js';
+const categories = Object.entries(menu);
+---
+
+<section class="py-16" data-menu>
+  <div class="mx-auto max-w-4xl px-4">
+    <div
+      role="tablist"
+      aria-label="Kategorie menu"
+      class="mb-10 flex flex-wrap justify-center gap-2 border-b border-ink/10"
+    >
+      {categories.map(([key, cat], i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${key}`}
+          aria-controls={`panel-${key}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+          class="-mb-px border-b-2 border-transparent px-4 py-3 text-sm font-medium text-muted transition-colors hover:text-ink aria-selected:border-ochre aria-selected:text-ink"
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+{categories.map(([key, cat]) => (
+  <div
+    role="tabpanel"
+    id={`panel-${key}`}
+    aria-labelledby={`tab-${key}`}
+    tabindex="0"
+    class="focus:outline-none"
+  >
+    <h2 class="hidden print:mb-4 print:block print:font-display print:text-2xl print:text-ink">
+      {cat.label}
+    </h2>
+    <ul class="divide-y divide-ink/5">
+          {cat.items.map((item) => (
+            <li class="flex items-baseline justify-between gap-6 py-5">
+              <div>
+                <h3 class="font-medium text-ink">{item.name}</h3>
+                {item.description && (
+                  <p class="mt-1 text-sm text-muted">{item.description}</p>
+                )}
+              </div>
+              <span class="whitespace-nowrap font-medium text-ink">
+                {item.price} Kč
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('[data-menu]').forEach((root) => {
+      const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+      const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+
+      // Progressive enhancement: server renders all panels visible,
+      // JS collapses to the first.
+      panels.forEach((p, i) => {
+        p.hidden = i !== 0;
+      });
+
+      function activate(index: number, focus = true) {
+        tabs.forEach((tab, i) => {
+          const selected = i === index;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          panels[i].hidden = !selected;
+        });
+        if (focus) tabs[index].focus();
+      }
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll<HTMLElement>('[data-menu] [role="tabpanel"]').forEach((p) => {
+    p.hidden = false;
+  });
+});
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => activate(i, false));
+
+        tab.addEventListener('keydown', (e) => {
+          let next: number | null = null;
+          if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') next = 0;
+          else if (e.key === 'End') next = tabs.length - 1;
+          if (next !== null) {
+            e.preventDefault();
+            activate(next);
+          }
+        });
+      });
+    });
+  });
+</script>
