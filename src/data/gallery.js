@@ -5,6 +5,10 @@ export const galleryAlt = {
   'svickova.jpg': 'Svíčková na smetaně s houskovým knedlíkem a brusinkami',
   'table.jpg': 'Prostřený stůl v hlavním sále restaurace',
   'wine_cellar.jpg': 'Vinný sklípek s dubovými sudy',
+  'studna.jpg': 'Svíčková na smetaně s houskovým knedlíkem a brusinkami',
+  'forest.jpg': 'Prostřený stůl v hlavním sále restaurace',
+  'fields.jpg': 'Vinný sklípek s dubovými sudy',
+  'vino.jpg': 'Vinný sklípek s dubovými sudy',
 };
 
 // Indices into the alphabetically sorted image list. Featured tiles span 2×2.

@@ -1,0 +1,77 @@
+---
+// To add your portfolio link later, set portfolioUrl to your URL.
+// Leave it as an empty string to hide the link entirely.
+const portfolioUrl = '';
+
+const workEmail = 'kaluspatrik@proton.me';
+const hasPortfolioLink = portfolioUrl.length > 0;
+---
+
+<button
+  type="button"
+  data-demo-badge
+  class="fixed bottom-4 left-4 z-40 rounded-full bg-ink/90 px-3 py-1.5 text-xs font-medium text-parchment/90 shadow-lg backdrop-blur-sm transition-colors hover:bg-ink print:hidden"
+>
+  Portfolio ukázka
+</button>
+
+<dialog
+  data-demo-dialog
+  class="m-auto max-w-md rounded-lg border border-ink/10 bg-cream p-6 text-ink backdrop:bg-ink/60 backdrop:backdrop-blur-sm sm:p-8"
+>
+  <h2 class="font-display text-2xl font-bold">Toto je ukázkový web</h2>
+
+  <div class="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">
+    <p>
+      Restaurace Pod Trúbou je smyšlená. Web vznikl jako ukázka mé práce —
+      design, vývoj, obsah a technické detaily.
+    </p>
+    <p>
+      Máte zájem o podobný web pro svou firmu nebo restauraci?
+      Napište mi.
+    </p>
+  </div>
+
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a
+      href={`mailto:${workEmail}`}
+      class="rounded-full bg-ochre px-5 py-2.5 text-sm font-medium text-parchment hover:bg-ochre-dark"
+    >
+      Napsat e-mail
+    </a>
+    {hasPortfolioLink && (
+      <a
+        href={portfolioUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full border border-ink/15 px-5 py-2.5 text-sm font-medium text-ink hover:border-ochre hover:text-ochre"
+      >
+        Moje portfolio →
+      </a>
+    )}
+  </div>
+
+  <button
+    type="button"
+    data-demo-close
+    class="mt-6 text-xs text-muted hover:text-ink"
+  >
+    Zavřít
+  </button>
+</dialog>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const badge = document.querySelector<HTMLButtonElement>('[data-demo-badge]');
+    const dialog = document.querySelector<HTMLDialogElement>('[data-demo-dialog]');
+    if (!badge || !dialog) return;
+
+    badge.addEventListener('click', () => dialog.showModal());
+
+    dialog.querySelector('[data-demo-close]')?.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

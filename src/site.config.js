@@ -5,12 +5,12 @@ export const site = {
   url: 'https://showcaserestaurant.netlify.app',
 
   contact: {
-    phone: '+420 556 852 147',
-    email: 'info@podtrubou.cz',
+    phone: '+420 666 666 666',
+    email: 'restauracestramberk@seznam.cz',
   },
 
   address: {
-    street: 'Náměstí 5',
+    street: 'Náměstí 55',
     city: 'Štramberk',
     zip: '742 66',
   },
