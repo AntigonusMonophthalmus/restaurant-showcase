@@ -4,7 +4,7 @@ const robotsTxt = `
 User-agent: *
 Allow: /
 
-Sitemap: https://showcaserestaurant.netlify.app/sitemap-index.xml
+Sitemap: https://7ba3c18b-restaurant-showcase.patrikrestaurant.workers.dev/sitemap-index.xml
 `.trim();
 
 export const GET: APIRoute = () => {
